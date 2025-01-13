@@ -406,7 +406,41 @@ build.init: kustomize-crds
 kustomize-crds: output.init $(KUSTOMIZE) $(YQ)
 	@$(INFO) Kustomizing CRDs...
 	@rm -fr $(OUTPUT_DIR)/package || $(FAIL)
-	@cp -R package $(OUTPUT_DIR) && \
+	@cp -R package $(OUTPUT_DIR) || $(FAIL)
+	@rm -rf $(OUTPUT_DIR)/package/crds || $(FAIL)
+	@mkdir $(OUTPUT_DIR)/package/crds || $(FAIL)
+
+	cp package/crds/aws.upbound.io_providerconfigs.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/aws.upbound.io_providerconfigusages.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/aws.upbound.io_storeconfigs.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/backup.aws.upbound.io_plans.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/backup.aws.upbound.io_selections.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/backup.aws.upbound.io_vaults.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/ec2.aws.upbound.io_eips.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/ec2.aws.upbound.io_internetgateways.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/ec2.aws.upbound.io_natgateways.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/ec2.aws.upbound.io_routes.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/ec2.aws.upbound.io_routetables.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/ec2.aws.upbound.io_routetableassociations.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/ec2.aws.upbound.io_securitygroups.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/ec2.aws.upbound.io_securitygrouprules.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/ec2.aws.upbound.io_subnets.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/ec2.aws.upbound.io_vpcs.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/glue.aws.upbound.io_catalogdatabases.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/iam.aws.upbound.io_policies.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/iam.aws.upbound.io_roles.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/iam.aws.upbound.io_rolepolicyattachments.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/iam.aws.upbound.io_users.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/iam.aws.upbound.io_userpolicyattachments.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/rds.aws.upbound.io_clusters.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/rds.aws.upbound.io_clusterinstances.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/rds.aws.upbound.io_proxies.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/rds.aws.upbound.io_proxytargets.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/rds.aws.upbound.io_subnetgroups.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/s3.aws.upbound.io_buckets.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/s3.aws.upbound.io_bucketlifecycleconfigurations.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/s3.aws.upbound.io_bucketversionings.yaml $(OUTPUT_DIR)/package/crds/ || true
+
 	cd $(OUTPUT_DIR)/package/crds && \
 	$(KUSTOMIZE) create --autodetect || $(FAIL)
 	@export YQ=$(YQ) && \
