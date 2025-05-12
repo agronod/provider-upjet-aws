@@ -15,7 +15,7 @@ git submodule update --init --recursive
 gh auth login
 
 # Ensure everything is check in and tag
-git tag v1.19.0-slim
+git tag v1.20.1-slim
 
 # Build and push
 BUILD_ARGS="--load" XPKG_REG_ORGS_NO_PROMOTE="" XPKG_REG_ORGS="ghcr.io/agronod" make build.all publish BRANCH_NAME=main

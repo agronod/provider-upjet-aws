@@ -440,6 +440,8 @@ kustomize-crds: output.init $(KUSTOMIZE) $(YQ)
 	cp package/crds/s3.aws.upbound.io_buckets.yaml $(OUTPUT_DIR)/package/crds/ || true
 	cp package/crds/s3.aws.upbound.io_bucketlifecycleconfigurations.yaml $(OUTPUT_DIR)/package/crds/ || true
 	cp package/crds/s3.aws.upbound.io_bucketversionings.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/s3.aws.upbound.io_bucketloggings.yaml $(OUTPUT_DIR)/package/crds/ || true
+	cp package/crds/s3.aws.upbound.io_bucketpolicies.yaml $(OUTPUT_DIR)/package/crds/ || true
 
 	cd $(OUTPUT_DIR)/package/crds && \
 	$(KUSTOMIZE) create --autodetect || $(FAIL)
