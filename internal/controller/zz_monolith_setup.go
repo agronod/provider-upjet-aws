@@ -36,6 +36,8 @@ import (
 	subnetgrouprds "github.com/upbound/provider-aws/internal/controller/rds/subnetgroup"
 	bucket "github.com/upbound/provider-aws/internal/controller/s3/bucket"
 	bucketlifecycleconfiguration "github.com/upbound/provider-aws/internal/controller/s3/bucketlifecycleconfiguration"
+	bucketlogging "github.com/upbound/provider-aws/internal/controller/s3/bucketlogging"
+	bucketpolicy "github.com/upbound/provider-aws/internal/controller/s3/bucketpolicy"
 	bucketversioning "github.com/upbound/provider-aws/internal/controller/s3/bucketversioning"
 )
 
@@ -827,13 +829,13 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		// bucketintelligenttieringconfiguration.Setup,
 		// bucketinventory.Setup,
 		bucketlifecycleconfiguration.Setup,
-		// bucketlogging.Setup,
+		bucketlogging.Setup,
 		// bucketmetric.Setup,
 		// bucketnotification.Setup,
 		// bucketobject.Setup,
 		// bucketobjectlockconfiguration.Setup,
 		// bucketownershipcontrols.Setup,
-		// bucketpolicy.Setup,
+		bucketpolicy.Setup,
 		// bucketpublicaccessblock.Setup,
 		// bucketreplicationconfiguration.Setup,
 		// bucketrequestpaymentconfiguration.Setup,
